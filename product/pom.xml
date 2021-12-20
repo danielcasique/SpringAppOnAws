@@ -15,7 +15,7 @@
   <dependencies>
     <dependency>
       <groupId>com.casique.springapp</groupId>
-      <artifactId>common</artifactId>
+      <artifactId>aws-secrets-manager</artifactId>
       <version>1.0-SNAPSHOT</version>
     </dependency>
     <dependency>

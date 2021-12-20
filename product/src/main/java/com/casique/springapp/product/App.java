@@ -1,6 +1,6 @@
 package com.casique.springapp.product;
 
-import com.casique.springapp.common.configuration.MySQLConfig;
+import com.casique.springapp.awssecretsmanager.mysql.configuration.MySQLConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Import;

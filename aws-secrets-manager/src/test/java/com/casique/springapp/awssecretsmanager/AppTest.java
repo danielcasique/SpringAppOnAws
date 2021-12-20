@@ -1,4 +1,4 @@
-package com.casique.springapp.common;
+package com.casique.springapp.awssecretsmanager;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

@@ -30,7 +30,7 @@
   </dependencies>
 
   <modules>
-    <module>common</module>
+    <module>aws-secrets-manager</module>
     <module>product</module>
   </modules>
   

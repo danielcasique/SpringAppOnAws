@@ -1,4 +1,4 @@
-package com.casique.springapp.common.configuration;
+package com.casique.springapp.awssecretsmanager.mysql.configuration;
 
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Value;
@@ -40,7 +40,7 @@ public class MySQLConfig {
     private String defaultRegion;
 
     @Bean
-    @ConditionalOnProperty(value = "aurora_mysql.enabled")
+    @ConditionalOnProperty(value = "aurora_mysql.enabled", matchIfMissing = false)
     public DataSource dataSource(){
         final AwsSecret dbCredentials = getSecret();
         return DataSourceBuilder
@@ -130,13 +130,13 @@ public class MySQLConfig {
     }
 
     @Bean
-    @ConditionalOnProperty(value = "aurora_mysql.enabled")
+    @ConditionalOnProperty(value = "aurora_mysql.enabled", matchIfMissing = false)
     public JpaTransactionManager transactionManager(EntityManagerFactory emf){
         return new JpaTransactionManager(emf);
     }
 
     @Bean
-    @ConditionalOnProperty(value = "aurora_mysql.enabled")
+    @ConditionalOnProperty(value = "aurora_mysql.enabled", matchIfMissing = false)
     public JpaVendorAdapter jpaVendorAdapter(){
         HibernateJpaVendorAdapter jpaVendorAdapter = new HibernateJpaVendorAdapter();
         jpaVendorAdapter.setDatabase(Database.MYSQL);
@@ -144,7 +144,7 @@ public class MySQLConfig {
     }
 
     @Bean
-    @ConditionalOnProperty(value = "aurora_mysql.enabled")
+    @ConditionalOnProperty(value = "aurora_mysql.enabled", matchIfMissing = false)
     public LocalContainerEntityManagerFactoryBean entityManagerFactory(){
         LocalContainerEntityManagerFactoryBean lemfb = new LocalContainerEntityManagerFactoryBean();
         String []packages = packageToLoad.split(";");
