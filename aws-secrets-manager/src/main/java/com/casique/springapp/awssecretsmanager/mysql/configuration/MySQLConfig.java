@@ -27,20 +27,20 @@ public class MySQLConfig {
 
     private final Gson gson = new Gson();
 
-    @Value("${aurora_mysql.db_name}")
+    @Value("${aurora_mysql.db_name:''}")
     private String dbName;
 
-    @Value("${aurora_mysql.secret_name}")
+    @Value("${aurora_mysql.secret_name:''}")
     private String secretName;
 
-    @Value("${aurora_mysql.package_to_load}")
+    @Value("${aurora_mysql.package_to_load:''}")
     private String packageToLoad;
 
-    @Value("${aurora_mysql.default_region}")
+    @Value("${aurora_mysql.default_region:''}")
     private String defaultRegion;
 
     @Bean
-    @ConditionalOnProperty(value = "aurora_mysql.enabled", matchIfMissing = false)
+    @ConditionalOnProperty(value = "aurora_mysql.enabled")
     public DataSource dataSource(){
         final AwsSecret dbCredentials = getSecret();
         return DataSourceBuilder
@@ -130,13 +130,13 @@ public class MySQLConfig {
     }
 
     @Bean
-    @ConditionalOnProperty(value = "aurora_mysql.enabled", matchIfMissing = false)
+    @ConditionalOnProperty(value = "aurora_mysql.enabled")
     public JpaTransactionManager transactionManager(EntityManagerFactory emf){
         return new JpaTransactionManager(emf);
     }
 
     @Bean
-    @ConditionalOnProperty(value = "aurora_mysql.enabled", matchIfMissing = false)
+    @ConditionalOnProperty(value = "aurora_mysql.enabled")
     public JpaVendorAdapter jpaVendorAdapter(){
         HibernateJpaVendorAdapter jpaVendorAdapter = new HibernateJpaVendorAdapter();
         jpaVendorAdapter.setDatabase(Database.MYSQL);
@@ -144,7 +144,7 @@ public class MySQLConfig {
     }
 
     @Bean
-    @ConditionalOnProperty(value = "aurora_mysql.enabled", matchIfMissing = false)
+    @ConditionalOnProperty(value = "aurora_mysql.enabled")
     public LocalContainerEntityManagerFactoryBean entityManagerFactory(){
         LocalContainerEntityManagerFactoryBean lemfb = new LocalContainerEntityManagerFactoryBean();
         String []packages = packageToLoad.split(";");

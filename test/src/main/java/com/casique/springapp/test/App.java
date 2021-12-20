@@ -1,14 +1,17 @@
-package com.casique.springapp.awssecretsmanager;
+package com.casique.springapp.test;
 
+import com.casique.springapp.awssecretsmanager.mysql.configuration.MySQLConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Import;
 
 /**
  * Hello world!
  *
  */
 @SpringBootApplication
-public class App 
+@Import(MySQLConfig.class)
+public class App
 {
     public static void main(String[] args) {
         SpringApplication.run(App.class, args);
